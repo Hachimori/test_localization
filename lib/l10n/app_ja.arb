@@ -2,5 +2,14 @@
   "helloWorld": "こんにちは世界!",
   "@helloWorld": {
     "description": "お決まりの挨拶"
+  },
+  "numOfSearchResult": "検索結果は {count} 件です。",
+  "@numOfSearchResult": {
+    "description": "検索結果",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

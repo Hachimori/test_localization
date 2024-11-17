@@ -66,6 +66,12 @@ class MyHomePage extends StatelessWidget {
             Text(
               l10n.helloWorld
             ),
+            Text(
+              l10n.numOfSearchResult(0),
+            ),
+            Text(
+              l10n.numOfSearchResult(10),
+            ),
           ],
         ),
       ),
