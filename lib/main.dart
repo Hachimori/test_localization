@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -9,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,14 +18,24 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('ja', 'JP'),
-      ],
+      // 翻訳情報を手動で指定する場合
+      // localizationsDelegates: [
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      // ],
+      //
+      // サポートする言語を手動で指定する場合
+      // supportedLocales: const [
+      //   Locale('ja', 'JP'),
+      // ],
+
+      // 翻訳情報を自動生成コードで指定する場合
+      localizationsDelegates: L10n.localizationsDelegates,
+
+      // サポートする言語を自動生成コードで指定する場合
+      supportedLocales: L10n.supportedLocales,
+
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -42,6 +52,8 @@ class MyHomePage extends StatelessWidget {
     // Intl.defaultLocale = 'ja';
     Intl.defaultLocale = Localizations.localeOf(context).toString();
 
+    final l10n = L10n.of(context);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -50,6 +62,9 @@ class MyHomePage extends StatelessWidget {
             const TextField(),
             Text(
               DateFormat.yMEd().format(DateTime.now()),
+            ),
+            Text(
+              l10n.helloWorld
             ),
           ],
         ),
